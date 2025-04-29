@@ -1,3 +1,7 @@
-<h1>
-Hello I am Sujita Pandey 😊
-</h1>
+export default function Page() {
+  return (
+    <div>
+      <h1>Hello I am sujita pandey</h1>
+    </div>
+  );
+}
