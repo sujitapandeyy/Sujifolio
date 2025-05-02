@@ -8,9 +8,13 @@ import { BsLinkedin, BsGithub, BsFacebook } from "react-icons/bs";
 import Icons, { GitHubLink, InstagramLink, LinkedInLink } from "./Icons";
 
 const MotionLink = motion(Link);
-
-const CustomLink = ({ href, title, className = "" }) => {
-  const pathname = usePathname();
+interface CustomLinkProps {
+    href: string;
+    title: string;
+    className?: string; // Optional, since you have a default value
+  }
+  const CustomLink: React.FC<CustomLinkProps> = ({ href, title, className = "" }) => {
+    const pathname = usePathname();
   return (
     <Link href={href} className={`${className} relative group`}>
       {title}
