@@ -1,20 +1,18 @@
 "use client";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Logo from "./Logo";
 import { usePathname } from "next/navigation";
-import { motion } from "framer-motion";
-import { BsLinkedin, BsGithub, BsFacebook } from "react-icons/bs";
-import Icons, { GitHubLink, InstagramLink, LinkedInLink } from "./Icons";
+import { FaBars, FaTimes } from "react-icons/fa";
 
-const MotionLink = motion(Link);
 interface CustomLinkProps {
-    href: string;
-    title: string;
-    className?: string; // Optional, since you have a default value
-  }
-  const CustomLink: React.FC<CustomLinkProps> = ({ href, title, className = "" }) => {
-    const pathname = usePathname();
+  href: string;
+  title: string;
+  className?: string;
+}
+
+const CustomLink: React.FC<CustomLinkProps> = ({ href, title, className = "" }) => {
+  const pathname = usePathname();
   return (
     <Link href={href} className={`${className} relative group`}>
       {title}
@@ -30,31 +28,44 @@ interface CustomLinkProps {
 };
 
 const NavBar = () => {
+  const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 80);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const toggleMenu = () => setMenuOpen(!menuOpen);
+
   return (
-    <header className="w-full px-32 py-5 justify-between flex items-center text-xl">
+    <header
+      className={`fixed left-4 right-4 md:left-[80px] md:right-[80px] top-[20px] z-50 px-6 md:px-32 py-4 flex justify-between items-center text-lg md:text-xl rounded transition duration-500 ${
+        scrolled ? "bg-white shadow-lg" : "bg-transparent shadow-md"
+      }`}
+      style={{ backdropFilter: "saturate(180%) blur(10px)" }}
+    >
       <Logo />
-      <nav>
-        <CustomLink href="/" title="Home" className="mr-4" />
-        <CustomLink href="/About-me" title="About Me" className="mx-4" />
-        <CustomLink href="/Projects" title="Projects" className="mx-4" />
-        <CustomLink href="/Contact" title="Contact" className="mx-4" />
+
+      {/* Desktop Nav */}
+      <nav className="hidden md:flex">
+        <CustomLink href="/Projects" title="View Projects" className="mx-4 text-black font-semibold" />
       </nav>
-      <nav className="flex space-x-4 items-center">
-        <Link href="https://www.linkedin.com/in/sujita-pandey-5a45302b6" target="_blank">
-          <BsLinkedin
-            size={24}
-            className="text-blue-600 hover:text-blue-800 transition-colors duration-200"
-          />
-        </Link>
-        <Link href="https://www.facebook.com/" target="_blank">
-          <BsFacebook
-            size={24}
-            className="text-blue-600 hover:text-blue-800 transition-colors duration-200"
-          />
-        </Link>
-<GitHubLink/>
-<InstagramLink/>
-      </nav>
+
+      {/* Mobile Toggle Button */}
+      <button className="md:hidden text-black " onClick={toggleMenu}>
+        {menuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+      </button>
+
+      {/* Mobile Nav Dropdown */}
+      {menuOpen && (
+        <div className="absolute top-full left-0 right-0 bg-white text-black p-6 flex flex-col items-center gap-4 md:hidden shadow-md rounded-b">
+          <CustomLink href="/Projects" title="View Projects" className="text-black" />
+        </div>
+      )}
     </header>
   );
 };

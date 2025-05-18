@@ -82,7 +82,6 @@ const Icons = () => {
   return (
     <div>
       <InstagramLink />
-      <LinkedInLink />
       <GitHubLink />
     </div>
   );
