@@ -3,8 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Montserrat } from "next/font/google";
 import NavBar from "@/components/NavBar";
-import AboutMe from "@/components/AboutMe";
-import Projects from "@/components/Projects";
+import SparkleCursor from "@/components/SparkleCursor";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -34,12 +33,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable}  ` }>
-        <NavBar/>
+      <body className={`${geistSans.variable}  `}>
+        <SparkleCursor />
+        <NavBar />
         {children}
-        <AboutMe/>
-        <Projects/>
       </body>
     </html>
   );

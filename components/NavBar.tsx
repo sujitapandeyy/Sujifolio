@@ -43,23 +43,23 @@ const NavBar = () => {
       className={`fixed z-50 top-5 left-4 right-4 md:left-20 md:right-20 
       px-6 md:px-32 py-4 flex justify-between items-center 
       text-lg md:text-xl rounded-xl transition-all duration-500 backdrop-blur-lg
-      ${scrolled ? "bg-white/10 shadow-lg" : "bg-black shadow-md"}`}
+      ${scrolled ? "bg-white/10 shadow-lg" : "bg-white shadow-md"}`}
     >
       <Logo />
 
       {/* Desktop Nav */}
       <nav className="hidden md:flex">
         <CustomLink
-          href="/Projects"
+          href="/#projects"
           title="View Projects"
           className={`mx-4 font-semibold ${
-            scrolled ? "text-black" : "text-white"
+            scrolled ? "text-black" : "text-black"
           }`}
         />
       </nav>
 
       {/* Mobile Toggle */}
-      <button className={`md:hidden ${scrolled ? "text-black" : "text-white"}`} onClick={toggleMenu}>
+      <button className={`md:hidden ${scrolled ? "text-black" : "text-black"}`} onClick={toggleMenu}>
         {menuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
       </button>
 
@@ -70,7 +70,7 @@ const NavBar = () => {
         transition-all duration-300 origin-top
         ${menuOpen ? "scale-y-100 opacity-100" : "scale-y-0 opacity-0 pointer-events-none"}`}
       >
-        < CustomLink href="/Projects" title="View Projects" className="text-black" />
+        < CustomLink href="/#projects" title="View Projects" className="text-black" />
       </div>
     </header>
   );

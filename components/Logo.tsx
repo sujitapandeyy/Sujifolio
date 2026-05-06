@@ -22,7 +22,7 @@ const Logo = () => {
         className={`
           w-12 h-12 flex items-center justify-center rounded-full 
           text-xl font-bold transition-all duration-500 shadow
-          ${scrolled ? "bg-black text-white" : "bg-white text-black"}
+          ${scrolled ? "bg-black text-white" : "bg-black text-white"}
         `}
         whileHover={{ scale: 1.12 }}
         whileTap={{ scale: 0.92 }}
