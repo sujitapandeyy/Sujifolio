@@ -4,6 +4,7 @@ import "./globals.css";
 import { Montserrat } from "next/font/google";
 import NavBar from "@/components/NavBar";
 import AboutMe from "@/components/AboutMe";
+import Projects from "@/components/Projects";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -38,6 +39,7 @@ export default function RootLayout({
         <NavBar/>
         {children}
         <AboutMe/>
+        <Projects/>
       </body>
     </html>
   );
