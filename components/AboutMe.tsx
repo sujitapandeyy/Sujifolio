@@ -53,8 +53,8 @@ const [hoveredStack, setHoveredStack] = useState<number | null>(null);
     }, 180);
   }
 
-  function getStackPos(i) {
-    return ((i - active) % 3 + 3) % 3;
+function getStackPos(i: number) {
+      return ((i - active) % 3 + 3) % 3;
   }
 
   const posStyles = [
