@@ -15,7 +15,7 @@ const tabs = [
     image: devImg,
     overlayTitle: "Full stack Developer",
     overlaySub: "Laravel , QA Tester",
-    desc: "I build modern, responsive, and high-performance web applications using React and Next.js. My focus is on clean UI, scalability, and delivering seamless user experiences with strong performance optimization.",
+    desc: "I build modern, responsive, and high-performance web applications using React and Next.js. My focus is on clean UI, scalability, and delivering seamless user experiences with strong performance optimization.I build modern, responsive, and high-performance web applications using React and Next.js. My focus is on clean UI, scalability, and delivering seamless user experiences with strong performance optimization.",
     skills: ["Laravel", "Livewire", "QA", "PHP", "JavaScript", "React", "Next.js"],
   },
   {
@@ -43,7 +43,7 @@ const tabs = [
 export default function AboutPage() {
   const [active, setActive] = useState(0);
   const [cardVisible, setCardVisible] = useState(true);
-const [hoveredStack, setHoveredStack] = useState<number | null>(null);
+  const [hoveredStack, setHoveredStack] = useState<number | null>(null);
   function switchTab(idx: number) {
     if (idx === active) return;
     setCardVisible(false);
@@ -53,8 +53,8 @@ const [hoveredStack, setHoveredStack] = useState<number | null>(null);
     }, 180);
   }
 
-function getStackPos(i: number) {
-      return ((i - active) % 3 + 3) % 3;
+  function getStackPos(i: number) {
+    return ((i - active) % 3 + 3) % 3;
   }
 
   const posStyles = [
@@ -70,7 +70,7 @@ function getStackPos(i: number) {
   ];
 
   return (
-    <section className="relative py-20 px-6 md:px-16 bg-white overflow-hidden font-[Sora,sans-serif]">
+    <section className="relative py-7 px-6 md:px-16 bg-white overflow-hidden font-[Sora,sans-serif]">
 
       {/* Grid background */}
       <div
@@ -81,6 +81,8 @@ function getStackPos(i: number) {
           backgroundSize: "36px 36px",
         }}
       />
+
+
 
       {/* Glow blobs */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-violet-100 rounded-full blur-3xl opacity-40 pointer-events-none -translate-y-1/2 translate-x-1/2" />
@@ -156,19 +158,23 @@ function getStackPos(i: number) {
         </div>
 
         {/* ── RIGHT: Text content ── */}
+
         <div>
 
           {/* Headline */}
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight mb-3">
+          {/* <div className="relative z-10 max-w-3xl mx-auto text-center"> */}
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 text-center mb-5">
             Who{" "}
             <span className="italic text-violet-500" style={{ fontFamily: "Georgia, serif" }}>
               I Am
             </span>
+            <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto mb-8 mt-3"></div>
           </h2>
 
-          <p className="text-sm text-gray-500 leading-relaxed mb-7 max-w-sm">
+          <p className="text-sm text-gray-500 mb-7">
             BCA graduate & full-stack developer.
           </p>
+          {/* </div> */}
 
           {/* Tab switcher */}
           <div className="flex gap-1 bg-gray-100 rounded-xl p-1 mb-5">

@@ -10,6 +10,7 @@ import {
   GitHubLink,
   InstagramLink,
   LinkedInLink,
+  GmailLink,
 } from "@/components/Icons";
 import AboutMe from "@/components/AboutMe";
 import Projects from "@/components/Projects";
@@ -19,6 +20,7 @@ const socialLinks = [
   { Link: LinkedInLink, label: "LinkedIn" },
   { Link: FacebookLink, label: "Facebook" },
   { Link: InstagramLink, label: "Instagram" },
+  { Link: GmailLink, label: "Gmail" },
 ];
 
 const ringIcons = [
@@ -26,6 +28,7 @@ const ringIcons = [
   { Link: LinkedInLink, label: "LinkedIn", angle: -35 },
   { Link: FacebookLink, label: "Facebook", angle: -15 },
   { Link: InstagramLink, label: "Instagram", angle: 5 },
+  { Link: GmailLink, label: "Gmail", angle: 45 },
 ].map(({ Link, label, angle }) => {
   const r = 200;
   const rad = (angle * Math.PI) / 180;
@@ -42,7 +45,17 @@ export default function Home() {
         <title>Sujita Pandey — Web Developer</title>
       </Head>
 
-      <main className="relative min-h-screen bg-gray-50 flex flex-col md:flex-row items-center justify-center px-6 md:px-16 xl:px-28 gap-12 md:gap-16 py-16 overflow-hidden">
+      <main className="relative min-h-screen flex flex-col md:flex-row items-center justify-center px-6 md:px-16 xl:px-28 gap-12 md:gap-16 pt-16 overflow-hidden">
+        <div
+          className="absolute inset-0 opacity-[0.04] pointer-events-none"
+          style={{
+            backgroundImage:
+              "linear-gradient(#6366f1 1px, transparent 1px), linear-gradient(90deg, #f1638e 1px, transparent 1px)",
+            backgroundSize: "36px 36px",
+          }}
+        />
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-violet-100 rounded-full blur-3xl opacity-40 pointer-events-none -translate-y-1/2 translate-x-1/2" />
+        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-indigo-100 rounded-full blur-3xl opacity-30 pointer-events-none translate-y-1/2 -translate-x-1/2" />
 
         {/* Soft background blobs */}
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-indigo-50 rounded-full blur-3xl opacity-60 pointer-events-none -translate-y-1/3 translate-x-1/3" />
@@ -51,19 +64,12 @@ export default function Home() {
         {/* ── LEFT ── */}
         <section className="relative z-10 md:w-1/2 flex flex-col justify-center space-y-6 text-center md:text-left">
 
-          {/* <div className="flex justify-center md:justify-start">
-            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase text-indigo-600 bg-indigo-50 border border-indigo-100">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-              Open to opportunities
-            </span>
-          </div> */}
-
           <p className="text-sm font-medium tracking-[0.2em] uppercase text-indigo-400">
-            ✨Hello, I&apos;m 
+            ✨Hello, I&apos;m
           </p>
 
           <div>
-            <h1 className="text-5xl md:text-6xl xl:text-7xl font-black leading-tight tracking-tight text-gray-900">
+            <h1 className="text-4xl md:text-5xl xl:text-6xl font-black leading-tight tracking-tight text-gray-900">
               Sujita Pandey
             </h1>
           </div>
@@ -75,11 +81,18 @@ export default function Home() {
             stability, and smooth user experiences.
           </p>
 
-          <div className="flex items-center gap-3 justify-center md:justify-start">
+          <div className="flex items-center gap-3 justify-center md:justify-start mb-10 pb-10">
             <div className="h-px w-6 bg-indigo-300" />
             <span className="text-xs font-semibold text-indigo-500 tracking-widest uppercase">
-              Web Developer From Nepal 🇳🇵
-            </span>
+              <div className="flex items-center gap-2">
+                <span>Web Developer From Nepal</span>
+
+                <img
+                  src="/Image/nepal-flag.png"
+                  alt="Nepal Flag"
+                  className="w-6 h-4 object-cover rounded-sm"
+                />
+              </div>            </span>
             <div className="h-px w-6 bg-indigo-300" />
           </div>
 
@@ -104,20 +117,27 @@ export default function Home() {
         <section className="relative z-10 md:w-1/2 flex items-center justify-center">
           <div className="relative flex items-center justify-center">
 
-            <div
-              className="absolute w-[320px] h-[320px] md:w-[350px] md:h-[350px] rounded-full border-2 border-dashed border-indigo-200"
+            <
+              className="absolute w-[320px] h-[320px] md:w-[370px] md:h-[370px] rounded-full border-2 border-dashed border-indigo-200"
               style={{ animation: "slowSpin 12s linear infinite" }}
             />
-            <div className="absolute w-[280px] h-[280px] md:w-[340px] md:h-[340px] rounded-full border border-indigo-100" />
+            <div className="absolute w-[280px] h-[280px] md:w-[320px] md:h-[320px] rounded-full border border-indigo-100" />
+            <div className="relative w-56 h-56 md:w-[320px] md:h-[320px]">
 
-            <div className="relative w-56 h-56 md:w-[290px] md:h-[290px] rounded-full overflow-hidden z-10 ring-4 ring-white shadow-2xl shadow-indigo-100">
-              <Image
-                src={landingImg}
-                alt="Sujita Pandey"
-                fill
-                className="object-cover hover:scale-105 transition-transform duration-700"
-                priority
-              />
+              {/* Tilted background card */}
+              {/* <div className="absolute inset-0 bg-gray-300 rounded-full ring-4 ring-white shadow-xl rotate-6 translate-x-4 -translate-y-1 z-0" /> */}
+
+              {/* Main image card — overflow-hidden moved HERE */}
+              <div className="relative w-full h-full overflow-hidden z-10 rounded-full ring-4 ring-white shadow-2xl shadow-indigo-100">
+                <Image
+                  src={landingImg}
+                  alt="Sujita Pandey"
+                  fill
+                  className="object-cover hover:scale-105 transition-transform duration-700"
+                  priority
+                />
+              </div>
+
             </div>
 
             {/* Social icon pills */}
@@ -156,8 +176,8 @@ export default function Home() {
             ))}
 
             {/* Floating badge */}
-            <div
-              className="absolute -bottom-17 -left-5 z-20 flex items-center gap-2.5 px-4 py-2.5 rounded-2xl bg-white border border-gray-100 shadow-lg"
+            {/* <div
+              className="absolute -bottom-1 -left-20 z-20 flex items-center gap-2.5 px-4 py-2.5 rounded-2xl bg-white border border-gray-100 shadow-lg"
               style={{ animation: "floatBadge 4s ease-in-out infinite" }}
             >
               <div className="w-8 h-8 rounded-xl bg-indigo-50 flex items-center justify-center text-base flex-shrink-0">💻</div>
@@ -166,6 +186,16 @@ export default function Home() {
                 <div className="text-[10px] text-indigo-500 font-medium">Full-Stack</div>
               </div>
             </div>
+            <div
+              className="absolute -bottom-30 -right-45 z-20 flex items-center gap-2.5 px-4 py-2.5 rounded-2xl bg-white border border-gray-100 shadow-lg"
+              style={{ animation: "floatBadge 2s ease-in-out infinite" }}
+            >
+              <div className="w-8 h-8 rounded-xl bg-indigo-50 flex items-center justify-center text-base flex-shrink-0">💻</div>
+              <div>
+                <div className="text-xs font-bold text-gray-800">QA Assistant</div>
+                <div className="text-[10px] text-indigo-500 font-medium">Manual</div>
+              </div>
+            </div> */}
           </div>
         </section>
 
@@ -180,15 +210,45 @@ export default function Home() {
         {/* Stars strip */}
         <div
           className="absolute bottom-0 left-0 w-full h-40 pointer-events-none z-0"
-          style={{
-            backgroundImage: `url('/Image/stars.png')`,
-            backgroundSize: "cover",
-            backgroundPosition: "center bottom",
-            backgroundRepeat: "no-repeat",
-            opacity: 0.5,
-          }}
+          // style={{
+          //   backgroundImage: `url('/Image/sta.png')`,
+          //   backgroundSize: "cover",
+          //   backgroundPosition: "center bottom",
+          //   backgroundRepeat: "no-repeat",
+          //   opacity: 0.5,
+          // }}
         />
+
       </main>
+      {/* ── BOTTOM STATS STRIP ── */}
+      {/* <div
+        className="relative z-10 w-full flex justify-center py-10 bg-yellow-50"
+        style={{
+          backgroundImage: "url('/Image/sta.png')",
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "center",
+          backgroundSize: "cover",
+        }}
+      >
+        <div className="flex items-center gap-5 flex-wrap justify-center">
+
+          <div className="bg-white/80 backdrop-blur-md border border-gray-100 rounded-2xl px-7 py-4 text-center shadow-sm hover:-translate-y-1 transition-all w-40">
+            <div className="text-3xl font-extrabold text-indigo-600">10+</div>
+            <div className="text-xs text-gray-600 mt-1">Projects</div>
+          </div>
+
+          <div className="bg-white/80 backdrop-blur-md border border-gray-100 rounded-2xl px-7 py-4 text-center shadow-sm hover:-translate-y-1 transition-all w-40">
+            <div className="text-3xl font-extrabold text-indigo-600">2+</div>
+            <div className="text-xs text-gray-600 mt-1">Years Experience</div>
+          </div>
+
+          <div className="bg-white/80 backdrop-blur-md border border-gray-100 rounded-2xl px-7 py-4 text-center shadow-sm hover:-translate-y-1 transition-all w-40">
+            <div className="text-3xl font-extrabold text-indigo-600">5+</div>
+            <div className="text-xs text-gray-600 mt-1">Team Work</div>
+          </div>
+
+        </div>
+      </div> */}
 
       <AboutMe />
       <Projects />

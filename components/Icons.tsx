@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { FaInstagram, FaLinkedin, FaFacebook, FaGithub } from "react-icons/fa";
+import { FaInstagram, FaLinkedin, FaFacebook, FaGithub, FaMailBulk, FaEnvelope } from "react-icons/fa";
 
 export const InstagramLink = () => (
   <Link href="https://www.instagram.com/yourusername" target="_blank" className="ml-1">
@@ -40,6 +40,15 @@ export const GitHubLink = () => (
       className="hover:scale-110 transition-transform duration-200"
       style={{ color: "#333" }}
       
+    />
+  </Link>
+);
+export const GmailLink = () => (
+  <Link href="mailto:sujitapandey806@gmail.com" className="ml-1">
+    <FaEnvelope
+      size={28}
+      className="hover:scale-110 transition-transform duration-200"
+      style={{ color: "#333" }}
     />
   </Link>
 );
