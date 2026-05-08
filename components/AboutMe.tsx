@@ -43,9 +43,8 @@ const tabs = [
 export default function AboutPage() {
   const [active, setActive] = useState(0);
   const [cardVisible, setCardVisible] = useState(true);
-  const [hoveredStack, setHoveredStack] = useState(null);
-
-  function switchTab(idx) {
+const [hoveredStack, setHoveredStack] = useState<number | null>(null);
+  function switchTab(idx: number) {
     if (idx === active) return;
     setCardVisible(false);
     setTimeout(() => {
