@@ -59,7 +59,7 @@ export default function Home() {
           </div> */}
 
           <p className="text-sm font-medium tracking-[0.2em] uppercase text-indigo-400">
-            ✨Hello, I&apos;m
+            ✨Hello, I&apos;m 
           </p>
 
           <div>
