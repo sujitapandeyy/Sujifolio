@@ -91,7 +91,7 @@ export default function AboutPage() {
       <div className="relative z-10 max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
 
         {/* ── LEFT: Image stack ── */}
-        <div>
+        <div className="hidden md:flex flex-col">
           <div className="relative w-3/4 h-[420px]" style={{ perspective: "1000px" }}>
             {tabs.map((tab, i) => {
               const pos = getStackPos(i);
@@ -128,8 +128,8 @@ export default function AboutPage() {
                   </div>
 
                   {/* Click-to-switch hint on back cards */}
-                  {pos !== 0 && (
-                    <div className="absolute inset-0 flex items-center justify-center">
+                  {/* {pos !== 0 && (
+                    <div className="absolute inset-0 flex items-center justify-center ">
                       <div
                         className={`bg-white/80 backdrop-blur-sm text-gray-700 text-xs font-medium px-3 py-1.5 rounded-full
                           transition-opacity duration-300 ${isHovered ? "opacity-100" : "opacity-0"}`}
@@ -137,14 +137,14 @@ export default function AboutPage() {
                         Click to view
                       </div>
                     </div>
-                  )}
+                  )} */}
                 </div>
               );
             })}
           </div>
 
           {/* Dot indicators */}
-          <div className="flex justify-center gap-2 mt-5">
+          <div className="flex justify-center gap-2 mt-10">
             {tabs.map((_, i) => (
               <button
                 key={i}
@@ -171,7 +171,7 @@ export default function AboutPage() {
             <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto mb-8 mt-3"></div>
           </h2>
 
-          <p className="text-sm text-gray-500 mb-7">
+          <p className="text-sm text-gray-500 mb-7 text-center">
             BCA graduate & full-stack developer.
           </p>
           {/* </div> */}
@@ -206,6 +206,72 @@ export default function AboutPage() {
                 {tab.title.split(" ")[0]}
               </button>
             ))}
+          </div>
+
+          <div className="lg:hidden flex flex-col items-center">
+            <div className="relative w-3/4 h-[420px]" style={{ perspective: "1000px" }}>
+              {tabs.map((tab, i) => {
+                const pos = getStackPos(i);
+                const isHovered = hoveredStack === i;
+                return (
+                  <div
+                    key={tab.id}
+                    onClick={() => switchTab(i)}
+                    onMouseEnter={() => setHoveredStack(i)}
+                    onMouseLeave={() => setHoveredStack(null)}
+                    className={`absolute inset-0 rounded-2xl overflow-hidden border-[3px] border-white cursor-pointer
+                    transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)]
+                    ${posStyles[pos]}
+                    ${isHovered ? hoverPosStyles[pos] : ""}
+                  `}
+                  >
+                    <Image
+                      src={tab.image}
+                      alt={tab.title}
+                      fill
+                      className="object-cover pointer-events-none"
+                    />
+
+                    {/* Hover overlay */}
+                    <div
+                      className={`absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent
+                      transition-opacity duration-300
+                      ${pos === 0 && isHovered ? "opacity-100" : "opacity-0"}`}
+                    >
+                      <div className="absolute bottom-0 left-0 right-0 p-5">
+                        <div className="text-white font-semibold text-sm">{tab.overlayTitle}</div>
+                        <div className="text-white/70 text-xs mt-0.5">{tab.overlaySub}</div>
+                      </div>
+                    </div>
+
+                    {/* Click-to-switch hint on back cards */}
+                    {pos !== 0 && (
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div
+                          className={`bg-white/80 backdrop-blur-sm text-gray-700 text-xs font-medium px-3 py-1.5 rounded-full
+                          transition-opacity duration-300 ${isHovered ? "opacity-100" : "opacity-0"}`}
+                        >
+                          Click to view
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* Dot indicators */}
+            <div className="flex justify-center gap-2 mt-5">
+              {tabs.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => switchTab(i)}
+                  className={`h-2 rounded-full transition-all duration-300
+                  ${active === i ? "w-6 bg-violet-500" : "w-2 bg-gray-300 hover:bg-violet-300"}`}
+                  aria-label={`Switch to ${tabs[i].title}`}
+                />
+              ))}
+            </div>
           </div>
 
           {/* Content card */}
