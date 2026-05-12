@@ -1,8 +1,10 @@
 "use client";
-
+import { useState } from "react";
+import { FaEye } from "react-icons/fa";
 import Image from "next/image";
 import landingImg from "../public/Image/landingImg.jpg";
 import { FaAngleDoubleRight, FaDownload } from "react-icons/fa";
+import Contact from "@/components/Contact";
 
 import {
   FacebookLink,
@@ -13,6 +15,7 @@ import {
 } from "@/components/Icons";
 import AboutMe from "@/components/AboutMe";
 import Projects from "@/components/Projects";
+import { Download } from "lucide-react";
 
 const socialLinks = [
   { Link: GitHubLink, label: "GitHub" },
@@ -21,7 +24,6 @@ const socialLinks = [
   { Link: InstagramLink, label: "Instagram" },
   { Link: GmailLink, label: "Gmail" },
 ];
-
 const ringIcons = [
   { Link: GitHubLink, label: "GitHub", angle: 25 },
   { Link: LinkedInLink, label: "LinkedIn", angle: -35 },
@@ -38,6 +40,7 @@ const ringIcons = [
 });
 
 export default function Home() {
+  const [hover, setHover] = useState<"left" | "right" | null>(null);
   return (
     <>
       <main className="relative w-full py-16 px-4 overflow-hidden">
@@ -112,21 +115,67 @@ export default function Home() {
                 </span>
               </button>
 
-              <button className="flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold text-gray-700 border border-gray-200 bg-white hover:border-indigo-300 hover:text-indigo-600 hover:bg-indigo-50 hover:-translate-y-0.5 transition-all duration-200 shadow-sm">
-                <FaDownload size={11} />
-                Download CV
-              </button>
+              <div className="relative">
+                <button
+                  className="relative h-13 min-w-[180px] px-1 bg-white text-gray-900 rounded-full shadow-md font-medium flex items-center overflow-hidden select-none"
+                  onMouseLeave={() => setHover(null)}
+                >
+                  {/* Hover zones */}
+                  <div
+                    className="absolute left-0 top-0 bottom-0 w-1/2 z-10 rounded-l-full"
+                    onMouseEnter={() => setHover("left")}
+                    onClick={() => window.open("/pdf/sujitacv.pdf", "_blank")}
+                  />
+                  <div
+                    className="absolute right-0 top-0 bottom-0 w-1/2 z-10 rounded-r-full"
+                    onMouseEnter={() => setHover("right")}
+                    onClick={() => {
+                      const a = document.createElement("a");
+                      a.href = "/pdf/sujitacv.pdf";
+                      a.download = "sujitacv.pdf";
+                      a.click();
+                    }}
+                  />
+
+                  {/* Sliding pill */}
+                  <span
+                    className={`absolute top-1 w-11 h-11 rounded-full bg-primary text-white flex items-center justify-center transition-all duration-300 z-20 pointer-events-none ${hover === "left" ? "left-1" : "left-[calc(100%-48px)]"
+                      }`}
+                  >
+                    {hover === "left" ? <FaEye size={18} /> : <FaDownload size={18} />}
+                  </span>
+
+                  {/* Labels */}
+                  <span
+                    className={`absolute text-sm pointer-events-none z-10 transition-all duration-200 ${hover === "left"
+                      ? "left-14 text-indigo-500"
+                      : hover === "right"
+                        ? "opacity-0 left-14"
+                        : "left-1/2 -translate-x-1/2 text-gray-700"
+                      }`}
+                  >
+                    {hover === "left" ? "View" : "Resume"}
+                  </span>
+
+                  <span
+                    className={`absolute right-14 text-sm text-indigo-500 pointer-events-none z-10 transition-opacity duration-200 ${hover === "right" ? "opacity-100" : "opacity-0"
+                      }`}
+                  >
+                    Download
+                  </span>
+                </button>
+              </div>
             </div>
           </section>
 
-           {/* Mobile social row — below image */}
-            <div className="flex md:hidden gap-3 justify-center z-10">
-              {socialLinks.map(({ Link, label }) => (
-                <div key={label} className="w-10 h-10 rounded-full flex items-center justify-center bg-white border border-gray-100 shadow-sm">
-                  <Link />
-                </div>
-              ))}
-            </div>
+          {/* Mobile social row — below image */}
+          <div className="flex md:hidden gap-3 justify-center z-10">
+            {socialLinks.map(({ Link, label }) => (
+              <div key={label} className="w-10 h-10 rounded-full flex items-center justify-center bg-white border border-gray-100 shadow-sm">
+                <Link />
+              </div>
+            ))}
+          </div>
 
           {/* ── RIGHT ── */}
           <section className="w-full md:w-1/2 hidden md:flex flex-col items-center justify-center gap-6">            {/* Fixed-size ring container — prevents layout blowout */}
@@ -184,13 +233,14 @@ export default function Home() {
               ))}
             </div>
 
-           
+
           </section>
         </div>
       </main>
 
       <AboutMe />
       <Projects />
+      <Contact />
 
       <style jsx global>{`
         @keyframes slowSpin {

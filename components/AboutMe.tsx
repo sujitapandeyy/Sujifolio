@@ -15,7 +15,7 @@ const tabs = [
     image: devImg,
     overlayTitle: "Full stack Developer",
     overlaySub: "Laravel , QA Tester",
-    desc: "I build modern, responsive, and high-performance web applications using React and Next.js. My focus is on clean UI, scalability, and delivering seamless user experiences with strong performance optimization.I build modern, responsive, and high-performance web applications using React and Next.js. My focus is on clean UI, scalability, and delivering seamless user experiences with strong performance optimization.",
+    desc: "Currently working as a Laravel Developer with experience in building secure, scalable, and user-friendly web applications. Skilled in backend development, API integration, and database management, along with knowledge of QA testing to ensure software quality, reliability, and smooth user experiences. Also experienced with Next.js for creating modern, responsive, and high-performance frontend applications with clean UI and optimized performance.",
     skills: ["Laravel", "Livewire", "QA", "PHP", "JavaScript", "React", "Next.js"],
   },
   {
@@ -25,7 +25,7 @@ const tabs = [
     image: studyImg,
     overlayTitle: "BCA Graduate",
     overlaySub: "Computer Applications",
-    desc: "I have completed my Bachelor's degree in Computer Application (BCA). I continuously explore modern technologies, strengthen my development skills, and improve my problem-solving abilities.",
+    desc: "I completed my school level education at Orchid Academy and pursued both my higher secondary studies and Bachelor's degree in Computer Application (BCA) at NCCS College. Throughout my academic journey, I developed a strong foundation in software development, programming, and problem-solving while continuously exploring modern technologies and improving my technical skills.",
     skills: ["DSA", "OOP", "Databases", "Networking", "Linux"],
   },
   {
@@ -34,8 +34,8 @@ const tabs = [
     badge: "Creative · Growth",
     image: lifeImg,
     overlayTitle: "Personal Life",
-    overlaySub: "Growth · Creativity · Balance",
-    desc: "Beyond coding, I enjoy learning, experimenting, and building creative projects. I focus on consistency, personal growth, and maintaining a balance between creativity and discipline.",
+    overlaySub: "Music · Creativity · Taekwondo",
+    desc: "Beyond coding, I enjoy listening to music, watching movies, and drawing, which help me stay creative, relaxed, and inspired. I am also a 2nd Dan Taekwondo player, a journey that has taught me discipline, focus, confidence, and consistency. I value continuous self-growth and believe in maintaining a healthy balance between creativity, learning, and personal development.",
     skills: ["Learning", "Side Projects", "Reading", "Design", "Fitness", "Music"],
   },
 ];

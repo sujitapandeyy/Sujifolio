@@ -1,198 +1,238 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
-import { ExternalLink, Github, Eye } from 'lucide-react';
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { ExternalLink, Github, Eye, ChevronLeft, ChevronRight } from "lucide-react";
+import { projects } from "@/lib/projects";
 
-interface Project {
-  id: number;
-  title: string;
-  description: string;
-  image: string;
-  tech: string[];
-  liveUrl: string;
-  githubUrl: string;
-  category: 'Full Stack' | 'Frontend' | 'Mobile' | string;
-}
+const CARDS_VISIBLE = 4;
 
 const Projects: React.FC = () => {
-  const [projects] = useState<Project[]>([
-    {
-      id: 1,
-      title: 'E-Commerce Platform',
-      description:
-        'A modern e-commerce platform built with React, Node.js, and MongoDB. Features include user authentication, payment integration, and admin dashboard.',
-      image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=500&h=300&fit=crop',
-      tech: ['React', 'Node.js', 'MongoDB', 'Stripe'],
-      liveUrl: '#',
-      githubUrl: '#',
-      category: 'Full Stack',
-    },
-    {
-      id: 2,
-      title: 'Task Management App',
-      description:
-        'A collaborative task management application with real-time updates, drag-and-drop functionality, and team collaboration features.',
-      image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=500&h=300&fit=crop',
-      tech: ['React', 'TypeScript', 'Tailwind'],
-      liveUrl: '#',
-      githubUrl: '#',
-      category: 'Frontend',
-    },
-    {
-      id: 3,
-      title: 'Data Analytics',
-      description:
-        'An interactive dashboard for data visualization and analytics, featuring charts, graphs, and real-time data processing.',
-      image: 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=500&h=300&fit=crop',
-      tech: ['React', 'D3.js', 'Python', 'FastAPI'],
-      liveUrl: '#',
-      githubUrl: '#',
-      category: 'Full Stack',
-    },
-    {
-      id: 4,
-      title: 'Mobile Banking App',
-      description:
-        'A secure mobile banking application with biometric authentication, transaction history, and budget tracking features.',
-      image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=500&h=300&fit=crop',
-      tech: ['React Native', 'Node.js', 'PostgreSQL'],
-      liveUrl: '#',
-      githubUrl: '#',
-      category: 'Mobile',
-    },
-  ]);
-  const truncateWords = (text: string, limit = 10): string => {
-    if (!text) return "";
-
-    const words = text.split(" ");
-    return words.length > limit
-      ? words.slice(0, limit).join(" ") + "..."
-      : text;
-  };
-  const [filter, setFilter] = useState<string>('All');
-  const categories = ['All', 'Full Stack', 'Frontend', 'Mobile'];
+  const router = useRouter();
+  const [filter, setFilter] = useState<string>("All");
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const categories = ["All", "FullStack", "Frontend", "Backend"];
 
   const filteredProjects =
-    filter === 'All' ? projects : projects.filter((project) => project.category === filter);
+    filter === "All"
+      ? projects
+      : projects.filter((p) => p.category === filter);
+
+  const maxIndex = Math.max(0, filteredProjects.length - CARDS_VISIBLE);
+
+  const handleFilterChange = (cat: string) => {
+    setFilter(cat);
+    setCurrentIndex(0);
+  };
+
+  const prev = () => setCurrentIndex((i) => Math.max(0, i - 1));
+  const next = () => setCurrentIndex((i) => Math.min(maxIndex, i + 1));
+
+  const truncateWords = (text: string, limit = 12): string => {
+    const words = text.split(" ");
+    return words.length > limit ? words.slice(0, limit).join(" ") + "…" : text;
+  };
 
   return (
-    <section id="projects" className="py-20 px-4 bg-gray-50">
+    <section id="projects" className="relative py-10 px-4 overflow-hidden">
+      <div
+        className="absolute inset-0 opacity-[0.04] pointer-events-none z-0"
+        style={{
+          backgroundImage:
+            "linear-gradient(#6366f1 1px, transparent 1px), linear-gradient(90deg, #6366f1 1px, transparent 1px)",
+          backgroundSize: "36px 36px",
+        }}
+      />
+      {/* Glow blobs */}
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-violet-100 rounded-full blur-3xl opacity-40 pointer-events-none -translate-y-1/2 translate-x-1/2" />
+      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-indigo-100 rounded-full blur-3xl opacity-30 pointer-events-none translate-y-1/2 -translate-x-1/2" />
+
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-10">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Featured Projects</h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto mb-8"></div>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Here are some of my recent projects that showcase my skills and creativity
+        {/* Header */}
+        <div className="text-left mb-10">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-3">
+            Featured {" "}
+            <span className="italic text-violet-500" style={{ fontFamily: "Georgia, serif" }}>
+              Projects
+            </span>
+          </h2>
+
+          <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mb-4 ml-10" />
+
+          <p className="text-xl text-gray-600 max-w-2xl">
+            Some of my recent projects
           </p>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-4 mb-12">
+        {/* Filter pills */}
+        {/* <div className="flex flex-wrap justify-center gap-4 mb-12">
           {categories.map((category) => (
             <Button
               key={category}
-              onClick={() => setFilter(category)}
-              variant={filter === category ? 'default' : 'outline'}
+              onClick={() => handleFilterChange(category)}
+              variant={filter === category ? "default" : "outline"}
               className={`px-6 py-2 rounded-full transition-all duration-300 hover:scale-105 ${filter === category
-                ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg'
-                : 'border-gray-300 text-gray-700 hover:bg-gray-100'
+                  ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg"
+                  : "border-gray-300 text-gray-700 hover:bg-gray-100"
                 }`}
             >
               {category}
             </Button>
           ))}
-        </div>
+        </div> */}
 
-        <div className="grid md:grid-cols-4 gap-8">
-          {filteredProjects.map((project) => (
-            <Card
-              key={project.id}
-              className="bg-white border border-gray-200 hover:shadow-xl transition-all duration-300 group overflow-hidden hover:scale-105"
-            >
-              <div className="relative overflow-hidden">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-38 object-cover transition-transform duration-300 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                  <div className="flex gap-3">
-                    <Button
-                      size="sm"
-                      className="bg-white/20 hover:bg-white/30 text-white border-white/30"
-                      variant="outline"
-                    >
-                      <Eye size={16} />
-                    </Button>
-                    <Button
-                      size="sm"
-                      className="bg-white/20 hover:bg-white/30 text-white border-white/30"
-                      variant="outline"
-                    >
-                      <Github size={16} />
-                    </Button>
-                    <Button
-                      size="sm"
-                      className="bg-white/20 hover:bg-white/30 text-white border-white/30"
-                      variant="outline"
-                    >
-                      <ExternalLink size={16} />
-                    </Button>
-                  </div>
-                </div>
-              </div>
-              <CardContent className="">
-                <div className="flex items-center justify-between mb-3">
-                  <h3 className="text-sm font-semibold text-gray-900">{project.title}</h3>
-                  <span className="px-1 py-1 bg-blue-100 text-blue-600 text-xs rounded-full font-medium">
-                    {project.category}
-                  </span>
-                </div>
-                <p className="text-gray-600 mb-4 leading-relaxed text-sm">
-                  {truncateWords(project.description, 12)}
-                </p>                
-                <div className="flex flex-wrap gap-2 mb-6">
-                  {project.tech.map((tech) => (
-                    <span
-                      key={tech}
-                      className="px-1 py-1 bg-gray-100 text-gray-700 text-xs rounded-full hover:bg-gray-200 transition-colors"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-                <div className="flex gap-4 mb-4">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    className="border-blue-300 text-blue-600 hover:bg-blue-50 flex items-center gap-2 text-xs"
-                  >
-                    <ExternalLink size={16} />
-                    Live Demo
-                  </Button>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    className="border-gray-300 text-gray-700 hover:bg-gray-50 flex items-center gap-2 text-xs"
-                  >
-                    <Github size={16} />
-                    View Code
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-
-        <div className="text-center mt-12">
-          <Button
-            variant="outline"
-            className="border-gray-300 text-gray-700 hover:bg-gray-50 px-8 py-3 text-lg hover:scale-105 transition-all duration-300"
+        {/* Carousel */}
+        <div className="relative">
+          {/* Prev arrow */}
+          <button
+            onClick={prev}
+            disabled={currentIndex === 0}
+            className="absolute -left-5 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white border border-gray-200 shadow-md flex items-center justify-center text-gray-600 hover:bg-indigo-50 hover:text-indigo-600 hover:border-indigo-200 transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed"
+            aria-label="Previous"
           >
-            View More Projects
-          </Button>
+            <ChevronLeft size={20} />
+          </button>
+
+          {/* Viewport */}
+          <div className="overflow-hidden">
+            <div
+              className="flex gap-6 transition-transform duration-500 ease-in-out"
+              style={{
+                transform: `translateX(calc(-${currentIndex} * (100% / ${CARDS_VISIBLE} + ${(CARDS_VISIBLE - 1) * 24 / CARDS_VISIBLE}px)))`,
+              }}
+            >
+              {filteredProjects.map((project) => (
+                <div
+                  key={project.id}
+                  className="flex-shrink-0"
+                  style={{
+                    width: `calc((100% - ${(CARDS_VISIBLE - 1) * 24}px) / ${CARDS_VISIBLE})`,
+                  }}
+                >
+                  <Card className="bg-white border border-gray-200 hover:shadow-xl transition-all duration-300 group overflow-hidden hover:scale-105 h-full">
+                    {/* Image */}
+                    <div className="relative overflow-hidden">
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        className="w-full h-38 object-cover transition-transform duration-300 group-hover:scale-110"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <div className="flex gap-3">
+                          <Button
+                            size="sm"
+                            className="bg-white/20 hover:bg-white/40 text-white border-white/30"
+                            variant="outline"
+                            onClick={() => router.push(`/projects/${project.id}`)}
+                            title="View Details"
+                          >
+                            <Eye size={16} />
+                          </Button>
+                          <Button
+                            size="sm"
+                            className="bg-white/20 hover:bg-white/40 text-white border-white/30"
+                            variant="outline"
+                            onClick={() => window.open(project.githubUrl, "_blank")}
+                            title="GitHub"
+                          >
+                            <Github size={16} />
+                          </Button>
+                          {project.liveUrl !== "#" && (
+                            <Button
+                              size="sm"
+                              className="bg-white/20 hover:bg-white/40 text-white border-white/30"
+                              variant="outline"
+                              onClick={() => window.open(project.liveUrl, "_blank")}
+                              title="Live Demo"
+                            >
+                              <ExternalLink size={16} />
+                            </Button>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+
+                    <CardContent className="pt-4">
+                      <div className="flex items-center justify-between mb-3">
+                        <h3 className="text-sm font-semibold text-gray-900 line-clamp-1">
+                          {project.title}
+                        </h3>
+                        <span className="ml-2 flex-shrink-0 px-2 py-1 bg-blue-100 text-blue-600 text-xs rounded-full font-medium">
+                          {project.category}
+                        </span>
+                      </div>
+
+                      <p className="text-gray-600 mb-4 leading-relaxed text-sm">
+                        {truncateWords(project.description, 12)}
+                      </p>
+
+                      <div className="flex flex-wrap gap-2 mb-5">
+                        {project.tech.map((tech) => (
+                          <span
+                            key={tech}
+                            className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded-full hover:bg-gray-200 transition-colors"
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+
+                      <div className="flex gap-3">
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="border-indigo-300 text-indigo-600 hover:bg-indigo-50 flex items-center gap-1 text-xs"
+                          onClick={() => router.push(`/projects/${project.id}`)}
+                        >
+                          <Eye size={14} />
+                          Details
+                        </Button>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="border-gray-300 text-gray-700 hover:bg-gray-50 flex items-center gap-1 text-xs"
+                          onClick={() => window.open(project.githubUrl, "_blank")}
+                        >
+                          <Github size={14} />
+                          Code
+                        </Button>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Next arrow */}
+          <button
+            onClick={next}
+            disabled={currentIndex >= maxIndex}
+            className="absolute -right-5 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white border border-gray-200 shadow-md flex items-center justify-center text-gray-600 hover:bg-indigo-50 hover:text-indigo-600 hover:border-indigo-200 transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed"
+            aria-label="Next"
+          >
+            <ChevronRight size={20} />
+          </button>
         </div>
+
+        {/* Dot indicators */}
+        {filteredProjects.length > CARDS_VISIBLE && (
+          <div className="flex justify-center gap-2 mt-8">
+            {Array.from({ length: maxIndex + 1 }).map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setCurrentIndex(i)}
+                className={`h-2 rounded-full transition-all duration-300 ${i === currentIndex
+                  ? "bg-indigo-500 w-6"
+                  : "bg-gray-300 w-2 hover:bg-gray-400"
+                  }`}
+                aria-label={`Go to slide ${i + 1}`}
+              />
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );

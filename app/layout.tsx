@@ -4,6 +4,8 @@ import "./globals.css";
 import { Montserrat } from "next/font/google";
 import NavBar from "@/components/NavBar";
 import SparkleCursor from "@/components/SparkleCursor";
+import { Toaster } from "react-hot-toast";
+
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -37,6 +39,7 @@ export default function RootLayout({
         <SparkleCursor />
         <NavBar />
         {children}
+        <Toaster position="top-right" />
       </body>
     </html>
   );

@@ -2,139 +2,155 @@ export interface Project {
   id: number;
   title: string;
   description: string;
-  icon: string;
+  image: string;
   tech: string[];
   liveUrl: string;
   githubUrl: string;
-  category: string;
-  lang: string[];
-  summary: string;
-  details: string;
+  category: "FullStack" | "Frontend" | "Backend" | string;
+  features: string[];
+  challenges: string[];
+  screenshots: string[];
 }
 
 export const projects: Project[] = [
   {
     id: 1,
-    title: 'E-Commerce Platform',
+    title: "RaktaSewa - Blood Donation Platform",
     description:
-      'A full-featured online store with cart, auth, Stripe payments, and an admin dashboard for inventory management.',
-    icon: '🛍️',
-    tech: ['React', 'Node.js', 'MongoDB', 'Stripe'],
-    liveUrl: '#',
-    githubUrl: '#',
-    category: 'Full Stack',
-    lang: ['React', 'Full Stack'],
-    summary: 'Online store with checkout, inventory control, and admin tools.',
-    details:
-      'Built a complete e-commerce platform with user authentication, product catalog, shopping cart, order processing, Stripe payments, and an admin dashboard for inventory and order management. The application was built with performance, accessibility, and mobile responsiveness in mind.',
+      "Website where a recipient can request blood to blood bank as well as search donor based on proximity and blood type. Donor can register and manage their profile, view donation history, and receive notifications for blood donation requests.",
+    image:
+      "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&h=450&fit=crop",
+    tech: ["PHP", "MySQL", "Tailwind", "HTML"],
+    liveUrl: "#",
+    githubUrl: "https://github.com/sujitapandeyy/blooddonation",
+    category: "FullStack",
+    features: [
+      "Recipient can request blood from blood banks",
+      "Search donors by proximity and blood type",
+      "Donor registration and profile management",
+      "Donation history tracking",
+      "Real-time notifications for blood requests",
+    ],
+    challenges: [
+      "Implementing proximity-based donor search efficiently",
+      "Ensuring real-time notification delivery",
+      "Handling sensitive health data securely",
+    ],
+    screenshots: [
+      "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&h=450&fit=crop",
+      "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&h=450&fit=crop",
+    ],
   },
   {
     id: 2,
-    title: 'Task Management App',
+    title: "PairUp Matrimony - Matrimonial Platform",
     description:
-      'Collaborative kanban board with drag-and-drop, real-time sync, and team workspaces built for productivity.',
-    icon: '📋',
-    tech: ['React', 'TypeScript', 'Firebase', 'Tailwind'],
-    liveUrl: '#',
-    githubUrl: '#',
-    category: 'Frontend',
-    lang: ['React'],
-    summary: 'Kanban-style task board with realtime collaboration.',
-    details:
-      'A modern task management app featuring drag-and-drop workflows, real-time updates via Firebase, team workspaces, and responsive UI built with Tailwind CSS. I focused on usability, performance, and smooth interactions for teams of any size.',
+      "An intelligent partner suggestions based on personal attributes, family background, interests, and user preferences. The platform also includes features like profile management, search filters, and secure communication channels to facilitate meaningful connections.",
+    image:
+      "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&h=450&fit=crop",
+    tech: ["Python", "MongoDB", "Tailwind"],
+    liveUrl: "#",
+    githubUrl: "https://github.com/sujitapandeyy/pairup_matrimony",
+    category: "FullStack",
+    features: [
+      "AI-powered intelligent partner suggestions",
+      "Advanced search filters by attributes and preferences",
+      "Secure profile management",
+      "Private communication channels",
+      "Family background matching",
+    ],
+    challenges: [
+      "Building an accurate recommendation algorithm",
+      "Ensuring user privacy and data security",
+      "Designing intuitive UX for diverse age groups",
+    ],
+    screenshots: [
+      "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&h=450&fit=crop",
+      "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&h=450&fit=crop",
+    ],
   },
   {
     id: 3,
-    title: 'Data Analytics Dashboard',
+    title: "Job Portal - Job Search Platform",
     description:
-      'Interactive data visualization with live charts, custom KPIs, and CSV export powered by a Python backend.',
-    icon: '📊',
-    tech: ['React', 'D3.js', 'Python', 'FastAPI'],
-    liveUrl: '#',
-    githubUrl: '#',
-    category: 'Full Stack',
-    lang: ['React', 'Full Stack'],
-    summary: 'Dashboard with charts, KPIs, and exports.',
-    details:
-      'Developed an analytics dashboard that surfaces business metrics through interactive visualizations, custom KPI cards, and CSV export. The backend is powered by FastAPI, while the frontend uses D3.js and React for a polished, data-driven interface.',
+      "An online website that connects job seekers with employers or organizations providing access to diverse job opportunities.",
+    image:
+      "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=800&h=450&fit=crop",
+    tech: ["Laravel", "MySQL"],
+    liveUrl: "#",
+    githubUrl: "https://github.com/sujitapandeyy/laravelJobPortal",
+    category: "FullStack",
+    features: [
+      "Job seeker and employer separate dashboards",
+      "Advanced job search and filtering",
+      "Resume upload and management",
+      "Application tracking system",
+      "Email notifications for applications",
+    ],
+    challenges: [
+      "Building a scalable job matching system",
+      "Managing large volumes of applications efficiently",
+      "Implementing secure file uploads for resumes",
+    ],
+    screenshots: [
+      "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=800&h=450&fit=crop",
+      "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=450&fit=crop",
+    ],
   },
   {
     id: 4,
-    title: 'Mobile Banking App',
+    title: "Botanic Bazzar – Online Plant Store",
     description:
-      'A secure cross-platform banking app with biometric login, push alerts, and AI-powered budget tracking.',
-    icon: '💳',
-    tech: ['React Native', 'Node.js', 'PostgreSQL', 'JWT'],
-    liveUrl: '#',
-    githubUrl: '#',
-    category: 'Mobile',
-    lang: ['React', 'Mobile'],
-    summary: 'Secure banking app with biometrics and alerts.',
-    details:
-      'Created a cross-platform banking application with biometric authentication, real-time notifications, secure transactions, and personalized budget insights powered by AI. The app prioritizes security, simplicity, and a polished mobile experience.',
+      "An online plant selling website where a customer can explore varieties of plants. They can add plants to their cart, make purchases, and track their orders. The platform also provides care tips and plant recommendations based on user preferences.",
+    image:
+      "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=800&h=450&fit=crop",
+    tech: ["PHP", "MySQL", "HTML", "CSS"],
+    liveUrl: "#",
+    githubUrl: "https://github.com/sujitapandeyy/BotanicBazzar",
+    category: "FullStack",
+    features: [
+      "Browse and search plant catalog",
+      "Shopping cart and checkout flow",
+      "Order tracking system",
+      "Plant care tips and guides",
+      "Personalized plant recommendations",
+    ],
+    challenges: [
+      "Building a smooth cart and checkout experience",
+      "Designing an appealing product catalog UI",
+      "Implementing recommendation logic without ML libraries",
+    ],
+    screenshots: [
+      "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=800&h=450&fit=crop",
+      "https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?w=800&h=450&fit=crop",
+    ],
   },
   {
     id: 5,
-    title: 'CMS & Blog Platform',
+    title: "Hello Kids – Children's Clothing Store",
     description:
-      'A headless CMS built in PHP with custom post types, plugin hooks, and a REST API for decoupled frontends.',
-    icon: '✍️',
-    tech: ['PHP', 'Laravel', 'MySQL', 'REST API'],
-    liveUrl: '#',
-    githubUrl: '#',
-    category: 'Full Stack',
-    lang: ['PHP', 'Full Stack'],
-    summary: 'Headless CMS with custom post types and REST API.',
-    details:
-      'Built a customizable CMS with Laravel, including plugin hooks, custom post types, media management, and a REST API for headless frontends. The system was designed for flexibility and extensibility across publishing workflows.',
-  },
-  {
-    id: 6,
-    title: 'Inventory System',
-    description:
-      'Enterprise inventory tracker with barcode scanning, supplier management, and automated low-stock alerts.',
-    icon: '📦',
-    tech: ['PHP', 'Vue.js', 'MySQL', 'PHPMailer'],
-    liveUrl: '#',
-    githubUrl: '#',
-    category: 'Full Stack',
-    lang: ['PHP', 'Full Stack'],
-    summary: 'Inventory tracker with supply and stock alerts.',
-    details:
-      'Implemented an enterprise inventory management platform with barcode scanning, supplier profiles, purchase tracking, and automated low-stock notifications. The interface blends Vue.js reactivity with a robust PHP backend.',
-  },
-  {
-    id: 7,
-    title: 'Hotel Booking Engine',
-    description:
-      'PHP-powered booking system with dynamic pricing, availability calendar, and payment gateway integration.',
-    icon: '🏨',
-    tech: ['PHP', 'jQuery', 'MariaDB', 'Stripe'],
-    liveUrl: '#',
-    githubUrl: '#',
-    category: 'Full Stack',
-    lang: ['PHP'],
-    summary: 'Booking engine with pricing and calendar availability.',
-    details:
-      'Delivered a hotel booking engine with dynamic pricing, calendar availability, room management, and secure payment integrations. The platform is built for hotel operators to efficiently manage reservations and revenue.',
-  },
-  {
-    id: 8,
-    title: 'Fitness Tracker',
-    description:
-      'Mobile app to log workouts, track macros, and chart progress with personalized AI coaching suggestions.',
-    icon: '🏋️',
-    tech: ['React Native', 'Expo', 'Firebase', 'Redux'],
-    liveUrl: '#',
-    githubUrl: '#',
-    category: 'Mobile',
-    lang: ['React', 'Mobile'],
-    summary: 'Workout tracker with analytics and coaching.',
-    details:
-      'Built a fitness tracker app that logs workouts, tracks nutrition, charts progress, and provides personalized coaching suggestions. The experience is mobile-first, responsive, and designed to keep users motivated.',
+      "An online children's clothing store where customers can browse products, add items to their cart, make purchases, and track their orders.",
+    image:
+      "https://images.unsplash.com/photo-1471286174890-9c112ffca5b4?w=800&h=450&fit=crop",
+    tech: ["PHP", "MySQL", "HTML", "CSS"],
+    liveUrl: "#",
+    githubUrl: "https://github.com/sujitapandeyy/hellokids",
+    category: "FullStack",
+    features: [
+      "Child-friendly product browsing UI",
+      "Size guide and age-based filtering",
+      "Cart, checkout, and order tracking",
+      "Product care and washing tips",
+      "Recommendations based on age and preferences",
+    ],
+    challenges: [
+      "Designing a UI appealing to both kids and parents",
+      "Handling size variations and inventory management",
+      "Building trust with secure payment flow",
+    ],
+    screenshots: [
+      "https://images.unsplash.com/photo-1471286174890-9c112ffca5b4?w=800&h=450&fit=crop",
+      "https://images.unsplash.com/photo-1503944583220-79d8926ad5e2?w=800&h=450&fit=crop",
+    ],
   },
 ];
-
-export function getProjectById(id: number) {
-  return projects.find((project) => project.id === id);
-}
