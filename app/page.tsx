@@ -179,7 +179,7 @@ export default function Home() {
 
           {/* ── RIGHT ── */}
           <section className="w-full md:w-1/2 hidden md:flex flex-col items-center justify-center gap-6">            {/* Fixed-size ring container — prevents layout blowout */}
-            <div className="relative flex items-center justify-center w-[320px] h-[320px] md:w-[390px] md:h-[390px]">
+            <div className="relative flex items-center justify-center w-[200px] h-[200px]  md:w-[260px] md:h-[260px] lg:w-[390px] lg:h-[390px]">
 
               {/* Spinning dashed ring */}
               <div
@@ -232,8 +232,6 @@ export default function Home() {
                 </div>
               ))}
             </div>
-
-
           </section>
         </div>
       </main>

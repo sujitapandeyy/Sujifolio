@@ -20,7 +20,7 @@ export const projects: Project[] = [
       "Website where a recipient can request blood to blood bank as well as search donor based on proximity and blood type. Donor can register and manage their profile, view donation history, and receive notifications for blood donation requests.",
     image:
       "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&h=450&fit=crop",
-    tech: ["PHP", "MySQL", "Tailwind", "HTML"],
+    tech: ["PHP", "MySQL", "Tailwind"],
     liveUrl: "#",
     githubUrl: "https://github.com/sujitapandeyy/blooddonation",
     category: "FullStack",

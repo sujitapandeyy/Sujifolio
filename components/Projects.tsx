@@ -1,18 +1,35 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ExternalLink, Github, Eye, ChevronLeft, ChevronRight } from "lucide-react";
 import { projects } from "@/lib/projects";
 
-const CARDS_VISIBLE = 4;
+const useCardsVisible = () => {
+  const [cardsVisible, setCardsVisible] = useState(4);
+
+  useEffect(() => {
+    const update = () => {
+      const w = window.innerWidth;
+      if (w < 768) setCardsVisible(1);
+      else if (w < 1024) setCardsVisible(3);
+      else setCardsVisible(4);
+    };
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
+
+  return cardsVisible;
+};
 
 const Projects: React.FC = () => {
   const router = useRouter();
   const [filter, setFilter] = useState<string>("All");
   const [currentIndex, setCurrentIndex] = useState(0);
+  const CARDS_VISIBLE = useCardsVisible();
   const categories = ["All", "FullStack", "Frontend", "Backend"];
 
   const filteredProjects =
@@ -21,6 +38,11 @@ const Projects: React.FC = () => {
       : projects.filter((p) => p.category === filter);
 
   const maxIndex = Math.max(0, filteredProjects.length - CARDS_VISIBLE);
+
+  // Reset index when CARDS_VISIBLE changes (e.g. resize) or filter changes
+  useEffect(() => {
+    setCurrentIndex((i) => Math.min(i, maxIndex));
+  }, [CARDS_VISIBLE, maxIndex]);
 
   const handleFilterChange = (cat: string) => {
     setFilter(cat);
@@ -45,7 +67,6 @@ const Projects: React.FC = () => {
           backgroundSize: "36px 36px",
         }}
       />
-      {/* Glow blobs */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-violet-100 rounded-full blur-3xl opacity-40 pointer-events-none -translate-y-1/2 translate-x-1/2" />
       <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-indigo-100 rounded-full blur-3xl opacity-30 pointer-events-none translate-y-1/2 -translate-x-1/2" />
 
@@ -53,35 +74,14 @@ const Projects: React.FC = () => {
         {/* Header */}
         <div className="text-left mb-10">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-3">
-            Featured {" "}
+            Featured{" "}
             <span className="italic text-violet-500" style={{ fontFamily: "Georgia, serif" }}>
               Projects
             </span>
           </h2>
-
           <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mb-4 ml-10" />
-
-          <p className="text-xl text-gray-600 max-w-2xl">
-            Some of my recent projects
-          </p>
+          <p className="text-xl text-gray-600 max-w-2xl">Some of my recent projects</p>
         </div>
-
-        {/* Filter pills */}
-        {/* <div className="flex flex-wrap justify-center gap-4 mb-12">
-          {categories.map((category) => (
-            <Button
-              key={category}
-              onClick={() => handleFilterChange(category)}
-              variant={filter === category ? "default" : "outline"}
-              className={`px-6 py-2 rounded-full transition-all duration-300 hover:scale-105 ${filter === category
-                  ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg"
-                  : "border-gray-300 text-gray-700 hover:bg-gray-100"
-                }`}
-            >
-              {category}
-            </Button>
-          ))}
-        </div> */}
 
         {/* Carousel */}
         <div className="relative">
@@ -224,9 +224,7 @@ const Projects: React.FC = () => {
               <button
                 key={i}
                 onClick={() => setCurrentIndex(i)}
-                className={`h-2 rounded-full transition-all duration-300 ${i === currentIndex
-                  ? "bg-indigo-500 w-6"
-                  : "bg-gray-300 w-2 hover:bg-gray-400"
+                className={`h-2 rounded-full transition-all duration-300 ${i === currentIndex ? "bg-indigo-500 w-6" : "bg-gray-300 w-2 hover:bg-gray-400"
                   }`}
                 aria-label={`Go to slide ${i + 1}`}
               />

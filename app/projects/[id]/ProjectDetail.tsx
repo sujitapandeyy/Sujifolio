@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { ArrowLeft, ExternalLink, Github, CheckCircle2, AlertTriangle, Images } from "lucide-react";
 import { projects } from "@/lib/projects";
 import { useState } from "react";
+import { FaAngleDoubleLeft, FaAngleDoubleRight } from "react-icons/fa";
 
 interface Props {
   id: string;
@@ -42,14 +43,6 @@ export default function ProjectDetail({ id }: Props) {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
 
-        {/* Back */}
-        <button
-          onClick={() => router.push("/#projects")}
-          className="absolute top-6 left-6 flex items-center gap-2 text-white bg-white/20 hover:bg-white/30 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-medium transition-all duration-200"
-        >
-          <ArrowLeft size={16} />
-          Back
-        </button>
 
         {/* Title */}
         <div className="absolute bottom-8 left-6 right-6 max-w-5xl mx-auto">
@@ -183,11 +176,10 @@ export default function ProjectDetail({ id }: Props) {
                   <button
                     key={i}
                     onClick={() => setActiveScreenshot(i)}
-                    className={`rounded-xl overflow-hidden border-2 transition-all duration-200 ${
-                      i === activeScreenshot
-                        ? "border-indigo-500 shadow-md scale-105"
-                        : "border-gray-200 opacity-60 hover:opacity-100"
-                    }`}
+                    className={`rounded-xl overflow-hidden border-2 transition-all duration-200 ${i === activeScreenshot
+                      ? "border-indigo-500 shadow-md scale-105"
+                      : "border-gray-200 opacity-60 hover:opacity-100"
+                      }`}
                   >
                     <img src={src} alt={`Thumb ${i + 1}`} className="w-24 h-16 object-cover" />
                   </button>
@@ -196,9 +188,21 @@ export default function ProjectDetail({ id }: Props) {
             )}
           </div>
         )}
+        {/* Back */}
+        <button onClick={() => router.push("/#projects")}
+          className="relative h-13 min-w-[180px] px-1 bg-primary hover:bg-indigo-700 text-white rounded-full shadow-md transition duration-300 font-medium flex items-center select-none group">
+          <span className="absolute left-3/5 -translate-x-1/2 pointer-events-none">
+            Back
+          </span>
+          <span className="mr-auto w-11 h-11 rounded-full bg-white text-indigo-600 flex items-center justify-center transition-transform duration-500 group-hover:rotate-360">
+            <FaAngleDoubleLeft size={24} />
+          </span>
+        </button>
+
+
 
         {/* Other projects */}
-        {otherProjects.length > 0 && (
+        {/* {otherProjects.length > 0 && (
           <div className="border-t border-gray-200 pt-10">
             <h2 className="text-xl font-semibold text-gray-900 mb-6">Other Projects</h2>
             <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
@@ -221,8 +225,10 @@ export default function ProjectDetail({ id }: Props) {
               ))}
             </div>
           </div>
-        )}
+        )} */}
       </div>
+
+
     </main>
   );
 }

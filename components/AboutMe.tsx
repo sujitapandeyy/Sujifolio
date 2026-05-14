@@ -208,7 +208,7 @@ export default function AboutPage() {
             ))}
           </div>
 
-          <div className="lg:hidden flex flex-col items-center">
+          <div className="flex md:hidden flex-col items-center">
             <div className="relative w-3/4 h-[420px]" style={{ perspective: "1000px" }}>
               {tabs.map((tab, i) => {
                 const pos = getStackPos(i);

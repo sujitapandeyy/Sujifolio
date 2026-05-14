@@ -74,9 +74,9 @@ export default function Contact() {
                 {/* Header */}
 
                 {/* Left + Right */}
-                <div className="flex flex-col md:flex-row gap-40">
-
-                    <div className="lg:flex hidden">
+                <div className="flex flex-col md:flex-row gap-40 md:gap-10">
+                    <div className="hidden md:flex flex-col">
+                        {/* <div className="lg:flex hidden"> */}
                         <form onSubmit={handleSubmit} className="md:w-full space-y-4 mt-10 bg-white p-8 rounded-xl shadow-xl relative z-10">
                             <p className="text-sm font-medium tracking-[0.2em] uppercase text-indigo-400 text-center">Leave a message for me 😊</p>
                             <div className="grid sm:grid-cols-2 gap-4 mt-10 ">
@@ -145,7 +145,7 @@ export default function Contact() {
                     </div>
 
                     {/* RIGHT — INFO (moved here) */}
-                    <div className="md:w-1/2 flex flex-col justify-center space-y-8">
+                    <div className=" flex flex-col justify-center space-y-8">
                         <div className="text-center  mb-14">
                             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
                                 Contact{" "}
@@ -185,74 +185,75 @@ export default function Contact() {
                                 </div>
                             </div>
                         </div>
+                        <div className="flex md:hidden flex-col items-center">
 
-                        <div className="lg:hidden flex">
-                        <form onSubmit={handleSubmit} className="md:w-full bg-white p-8 rounded-xl shadow-xl relative z-10">
-                            <p className="text-sm font-medium tracking-[0.2em] uppercase text-indigo-400 text-center">Leave a message for me 😊</p>
-                            <div className="grid sm:grid-cols-2 gap-4 mt-10 ">
-                                <div className="space-y-1.5">
-                                    <label className="text-xs font-semibold text-gray-700 uppercase tracking-widest">
-                                        Name
-                                    </label>
-                                    <input
-                                        type="text"
-                                        name="name"
-                                        value={form.name}
-                                        onChange={handleChange}
-                                        required
-                                        placeholder="Your name"
-                                        className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm text-gray-800 placeholder-gray-300 focus:outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-50 transition-all"
-                                    />
+                            {/* <div className="lg:hidden flex"> */}
+                            <form onSubmit={handleSubmit} className="md:w-full bg-white p-8 rounded-xl shadow-xl relative z-10">
+                                <p className="text-sm font-medium tracking-[0.2em] uppercase text-indigo-400 text-center">Leave a message for me 😊</p>
+                                <div className="grid sm:grid-cols-2 gap-4 mt-10 ">
+                                    <div className="space-y-1.5">
+                                        <label className="text-xs font-semibold text-gray-700 uppercase tracking-widest">
+                                            Name
+                                        </label>
+                                        <input
+                                            type="text"
+                                            name="name"
+                                            value={form.name}
+                                            onChange={handleChange}
+                                            required
+                                            placeholder="Your name"
+                                            className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm text-gray-800 placeholder-gray-300 focus:outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-50 transition-all"
+                                        />
+                                    </div>
+
+                                    <div className="space-y-1.5">
+                                        <label className="text-xs font-semibold text-gray-700 uppercase tracking-widest">
+                                            Email
+                                        </label>
+                                        <input
+                                            type="email"
+                                            name="email"
+                                            value={form.email}
+                                            onChange={handleChange}
+                                            required
+                                            placeholder="Enter your email address"
+                                            className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm text-gray-800 placeholder-gray-300 focus:outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-50 transition-all"
+                                        />
+                                    </div>
                                 </div>
 
                                 <div className="space-y-1.5">
-                                    <label className="text-xs font-semibold text-gray-700 uppercase tracking-widest">
-                                        Email
+                                    <label className="text-xs font-semibold text-gray-700 py-2 uppercase">
+                                        Message
                                     </label>
-                                    <input
-                                        type="email"
-                                        name="email"
-                                        value={form.email}
+                                    <textarea
+                                        name="message"
+                                        value={form.message}
                                         onChange={handleChange}
                                         required
-                                        placeholder="Enter your email address"
-                                        className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm text-gray-800 placeholder-gray-300 focus:outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-50 transition-all"
+                                        rows={3}
+                                        placeholder="Tell me about your project or just say hi…"
+                                        className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm text-gray-800 placeholder-gray-300 focus:outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-50 transition-all resize-none"
                                     />
                                 </div>
-                            </div>
 
-                            <div className="space-y-1.5">
-                                <label className="text-xs font-semibold text-gray-700 py-2 uppercase">
-                                    Message
-                                </label>
-                                <textarea
-                                    name="message"
-                                    value={form.message}
-                                    onChange={handleChange}
-                                    required
-                                    rows={3}
-                                    placeholder="Tell me about your project or just say hi…"
-                                    className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm text-gray-800 placeholder-gray-300 focus:outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-50 transition-all resize-none"
-                                />
-                            </div>
-
-                            <button
-                                type="submit"
-                                disabled={status === "loading"}
-                                className="flex items-center justify-center gap-2 px-8 py-3 rounded-xl bg-primary hover:bg-indigo-700 disabled:bg-indigo-300 text-white font-medium text-sm transition-all duration-200 shadow-md shadow-indigo-100"
-                            >
-                                {status === "loading" ? (
-                                    <>
-                                        <Loader2 size={16} className="animate-spin" /> Sending…
-                                    </>
-                                ) : (
-                                    <>
-                                        <Send size={16} /> Send Message
-                                    </>
-                                )}
-                            </button>
-                        </form>
-                    </div>
+                                <button
+                                    type="submit"
+                                    disabled={status === "loading"}
+                                    className="flex items-center justify-center gap-2 px-8 py-3 rounded-xl bg-primary hover:bg-indigo-700 disabled:bg-indigo-300 text-white font-medium text-sm transition-all duration-200 shadow-md shadow-indigo-100"
+                                >
+                                    {status === "loading" ? (
+                                        <>
+                                            <Loader2 size={16} className="animate-spin" /> Sending…
+                                        </>
+                                    ) : (
+                                        <>
+                                            <Send size={16} /> Send Message
+                                        </>
+                                    )}
+                                </button>
+                            </form>
+                        </div>
 
                         <div className="h-px bg-gray-100" />
 
