@@ -3,9 +3,9 @@
 import React, { useState } from "react";
 import Image from "next/image";
 
-import devImg from "../public/Image/bg.jpg";
+import devImg from "../public/Image/landingImg.jpg";
 import studyImg from "../public/Image/abc.jpg";
-import lifeImg from "../public/Image/landingImg.jpg";
+import lifeImg from "../public/Image/bg.jpg";
 
 const tabs = [
   {
