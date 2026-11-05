@@ -4,7 +4,7 @@ import Link from "next/link";
 import { FaInstagram, FaLinkedin, FaFacebook, FaGithub, FaMailBulk, FaEnvelope } from "react-icons/fa";
 
 export const InstagramLink = () => (
-  <Link href="https://www.instagram.com/yourusername" target="_blank" className="ml-1">
+  <Link href="https://www.instagram.com/_sujitaaaa" target="_blank" className="ml-1">
     <FaInstagram
       size={28}
       className="hover:scale-110 transition-transform duration-200"
@@ -14,7 +14,7 @@ export const InstagramLink = () => (
 );
 
 export const LinkedInLink = () => (
-  <Link href="https://www.linkedin.com/in/yourusername" target="_blank" className="ml-1">
+  <Link href="https://www.linkedin.com/in/sujita-pandey-5a45302b6/" target="_blank" className="ml-1">
     <FaLinkedin
       size={28}
       className="hover:scale-110 transition-transform duration-200"
